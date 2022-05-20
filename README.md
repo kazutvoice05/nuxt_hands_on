@@ -1,5 +1,8 @@
 # nuxt_hands_on
 
+## Deploy Status
+[![Netlify Status](https://api.netlify.com/api/v1/badges/fad772ee-93a8-40d6-a447-3bdf52a4e6b7/deploy-status)](https://app.netlify.com/sites/bright-nasturtium-254bac/deploys)
+
 ## Build Setup
 
 ```bash
