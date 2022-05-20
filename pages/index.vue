@@ -1,5 +1,8 @@
 <template>
-  <Tutorial/>
+  <div class="flex flex-col">
+    <AppBar/>
+    <Tutorial/>
+  </div>
 </template>
 
 <script>
