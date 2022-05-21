@@ -1,11 +1,11 @@
 <template>
   <div class="flex flex-col">
     <AppBar/>
-    <Tutorial/>
     <div>
       {{ $store.state.post.title }}
     </div>
-    <button v-on:click="$store.dispatch('updatePostAction')">GetPost</button>
+    <button class="bg-blue-500" v-on:click="$store.dispatch('updatePostAction')">GetPost</button>
+    <Tutorial/>
   </div>
 </template>
 
