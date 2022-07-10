@@ -38,6 +38,7 @@ export default {
 
         this.message = docs
       } catch (err) {
+        console.log(err)
         console.log('failed to fetch data from firebase.')
       }
     }
