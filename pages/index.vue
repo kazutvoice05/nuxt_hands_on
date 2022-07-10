@@ -5,11 +5,11 @@
       {{ $store.state.post.title }}
     </div>
     <button class="bg-blue-500" v-on:click="$store.dispatch('updatePostAction')">GetPost</button>
-    <Tutorial/>
     <div>
-        {{ message }}
+        firestore Data: {{ message }}
     </div>
     <button v-on:click="getFirebase">AccessFirebase</button>
+    <Tutorial/>
   </div>
 </template>
 

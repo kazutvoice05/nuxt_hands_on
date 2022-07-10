@@ -1,19 +1,22 @@
 <template>
-  <div class="flex bg-image justify-center" :style="{ backgroundImage: 'url(' + bgImageUrl + ')' }">
-    <div>
-      <!-- left mergin -->
-    </div>
-    <div class="flex flex-col justify-center">
-      <div class="flex justify-center">
-        <youtube :video-id="videoId" ref="youtube" :playerVars="playerVars" @playing="playing"></youtube>
+  <div class="flex flex-col justify-center bg-image" :style="{ backgroundImage: 'url(' + bgImageUrl + ')' }">
+    <AppBar/>
+    <div class="flex justify-center">
+      <div>
+        <!-- left mergin -->
       </div>
-      <div class="flex justify-center">
-        <button class="player-button" @click="playVideo">Play</button>
-        <button class="player-button" @click="pauseVideo">Pause</button>
+      <div class="flex flex-col justify-center">
+        <div class="flex justify-center">
+          <youtube :video-id="videoId" ref="youtube" :playerVars="playerVars" @playing="playing"></youtube>
+        </div>
+        <div class="flex justify-center">
+          <button class="player-button" @click="playVideo">Play</button>
+          <button class="player-button" @click="pauseVideo">Pause</button>
+        </div>
       </div>
-    </div>
-    <div>
-      <!-- right mergin -->
+      <div>
+        <!-- right mergin -->
+      </div>
     </div>
   </div>
 </template>
