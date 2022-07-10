@@ -39,20 +39,12 @@ export default defineComponent({
         return {
             appBarColumns : [
                 {
-                    name: "Docs",
-                    ref: "#Docs"
+                    name: "Top",
+                    ref: "/"
                 },
                 {
-                    name: "Examples",
-                    ref: "#Examples"
-                },
-                {
-                    name: "Blog",
-                    ref: "#Blog"
-                },
-                {
-                    name: "Contact",
-                    ref: "#Contact"
+                    name: "Library",
+                    ref: "/library"
                 }
             ]
         }
