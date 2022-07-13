@@ -1,5 +1,5 @@
 <template>
-  <div class="flex flex-col justify-center bg-image" :style="{ backgroundImage: 'url(' + bgImageUrl + ')' }">
+  <div class="flex flex-col justify-center bg-image" :style="{ backgroundImage: `url(${bgImageUrl})` }">
     <AppBar/>
     <div class="flex justify-center">
       <div>
@@ -29,8 +29,12 @@ Vue.use(VueYoutube)
 
 export default {
   name: 'library',
-  async setup() {
-    // this.bgImageUrl = await this.getBackgroundImageUrl()
+  // setup 関数内では、data にアクセスできない
+  setup() {
+  },
+  // setup(beforeCreate, created) の後のライフサイクルで data 内の変数へアクセスする.
+  async beforeMount() {
+    this.bgImageUrl = await this.getBackgroundImageUrl()
   },
   data() {
     return {
@@ -38,14 +42,14 @@ export default {
       playerVars: {
         autoplay: 1,
       },
-      bgImageUrl: 'https://firebasestorage.googleapis.com/v0/b/nuxt-hands-on.appspot.com/o/bg.jpeg?alt=media&token=abedd2ab-f401-454a-88ff-248b6392ee6e',
+      bgImageUrl: '',
     }
   },
   methods: {
     async getBackgroundImageUrl () {
-      let ref = this.$fire.storage.ref('bg.jpeg')
-      let url = await ref.getDownloadURL()
-      console.log(url)
+      const ref = await this.$fire.storage.ref('bg.jpeg')
+      const url = await ref.getDownloadURL()
+
       return url
     },
     playVideo() {
