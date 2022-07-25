@@ -16,13 +16,13 @@
                     v-bind:key="column.name"
                     v-bind:class="index < appBarColumns.length - 1 ? 'app-bar-column' : 'app-bar-column-last'"
                 >
-                    <a v-if="isAdmin(column.acl)" v-bind:href="column.ref">
+                    <a v-if="isAdminMode(column.adminOnly)" v-bind:href="column.ref">
                         {{ column.name }}
                     </a>
                 </div>
             </div>
             <div>
-            <button v-on:click="onClick" class="inline-block text-sm px-4 py-2 leading-none border rounded text-white border-white hover:border-transparent hover:text-green-500 hover:bg-white mt-4 lg:mt-0">Download</button>
+            <button v-on:click="onClick" class="inline-block text-sm px-4 py-2 leading-none border rounded text-white border-white hover:border-transparent hover:text-green-500 hover:bg-white mt-4 lg:mt-0">Login</button>
             </div>
         </div>
     </nav>
@@ -50,20 +50,19 @@ export default defineComponent({
                 {
                     name: "ContentsManager",
                     ref: "/admin",
-                    acl: "admin",
+                    adminOnly: true,
                 }
             ]
         }
     },
     methods: {
-        onClick() {
-            const url = 'https://jp.vuejs.org/index.html'
-            window.open(url, '_blank')
+        async onClick() {
+            await this.$router.push("/login")
         },
-        isAdmin(acl) {
-            const isAdmin = this.$store.getters['isAdminUser'];
+        isAdminMode(adminOnly) {
+            const isAdmin = this.$store.getters['isAdmin'];
 
-            if (acl === 'admin'){
+            if (adminOnly){
                 return isAdmin
             }
 

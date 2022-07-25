@@ -1,5 +1,6 @@
 <template>
     <div class="root">
+        <AppBar/>
         <div class="title">Login Page</div>
         <button class="button" @click="signInWithGoogle">Sign in with Google</button>
     </div>
@@ -24,11 +25,12 @@ export default defineComponent({
             })
 
             console.log('login succeeded')
+            console.log(this.$store.state.authUser);
 
             this.$router.push({
                 path: '/profile'
             })
-        }
+        },
     }
 })
 </script>

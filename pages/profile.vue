@@ -1,5 +1,6 @@
 <template>
     <div class="flex flex-col">
+        <AppBar/>
         <div class="flex flex-col bg-gray-200 items-center">
             <h1 class="">User Profile</h1>
             <p class="" v-if="User != null">Your e-mail is {{ User.email }}</p>

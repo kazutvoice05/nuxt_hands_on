@@ -1,6 +1,15 @@
 import Vuex from 'vuex'
 import axios from 'axios'
 
+ function getAuthUserParam(state, key) {
+    if (state.authUser && key in state.authUser.keys()) {
+        return state.authUser.get(key)
+    }
+
+    return null
+    
+}
+
 const createStore = () => {
     return new Vuex.Store({
         state() {
@@ -12,7 +21,13 @@ const createStore = () => {
         },
         getters: {
             isLoggedIn: state => !!state.authUser,
-            isAdminUser:  state => !!state.authUser.isAdmin,
+            isAdmin: state => {
+                if (state.authUser) {
+                    if (state.authUser.role === 'admin')
+                        return true
+                }
+                return false
+            }
         },
         mutations: {
             UPDATE_MESSAGE(state, payload) {
@@ -30,8 +45,8 @@ const createStore = () => {
                     email: authUser.email,
                     emailVerified: authUser.emailVerified,
                     displayName: authUser.displayName,
+                    role: authUser.role,
                     photoURL: claims.photoURL,
-                    isAdmin: claims.isAdmin
                 }
             }
         },
@@ -45,53 +60,79 @@ const createStore = () => {
 
                 context.commit('UPDATE_POST', payload)
             },
-            async nuxtServerInit({ dispatch }, ctx) {
-                if (this.$fire.auth === null) {
-                    throw 'nuxtServiceInit Example not working - this.$fire.auth cannot be accessed.'
-                }
-
-                if (ctx.$fire.auth === null) {
-                    throw 'nuxtServerInit Example not working - ctx.$fire.auth cannot be accessed.'
-                }
-
-                if (ctx.app.$fire.auth === null) {
-                    throw 'nuxtServerInit Example not working - ctx.$fire.auth cannot be accessed.'
-                }
-
-                if (ctx.res && ctx.res.locals && ctx.res.locals.user) {
-                    const { allClaims: claims, ...authUser } = ctx.res.locals.user
-
-                    console.info(
-                        'Auth User verified on server-side. User: ',
-                        authUser,
-                        'Claims:',
-                        claims
-                    )
-                    
-                    await dispatch('onAuthStateChanged', {
-                        authUser,
-                        claims,
-                    })
-                }
-            },
-            async onAuthStateChanged({ commit }, { authUser, claims }) {
+            async onAuthStateChanged({ getters, dispatch, commit }, { authUser, claims }) {
+                // ログアウト or 認証失敗
                 if (!authUser) {
-                    // move to login page when logout
+                    // ログイン画面に遷移
                     await this.$router.push("/login")
+
+                    // vuex store 上のユーザ情報をリセット
                     commit('UNSET_USER')
+
                     return
                 }
 
+                // ログイン or 認証成功
                 if (authUser && claims) {
                     try {
-                        // move to profile page when login
+                        const uid = authUser.uid
+                        console.log("1: " + uid)
+
+                        // ユーザ情報が firestore に存在しない場合は新規ユーザ登録
+                        const existsUser = await dispatch('existsUser', uid)
+                        if (!existsUser) {
+                            const res = await dispatch('addUser', authUser)
+                            console.log(res)
+                        }
+
+                        const user = await dispatch('getUser', uid)     
+                        authUser.role = user.role;
+
+                        // プロフィール画面に遷移
                         await this.$router.push("/profile")
                     } catch (e) {
                         console.error(e)
                     }
                 }
 
+                // 認証されたユーザ情報を vuex store へ保存
                 commit('SET_USER', { authUser, claims })
+            },
+            async existsUser(context, uid) {
+                const record = await this.$fire.firestore.collection('users').doc(uid).get()
+
+                if (record.exists) {
+                    console.log("found user: " + uid)
+                    return true
+                }
+
+                console.log("record not found.")
+                return false
+
+            },
+            async getUser(context, uid) {
+                console.log("get user: " + uid)
+
+                const user = await this.$fire.firestore.collection('users').doc(uid).get()
+
+                return user.data()
+                
+            },
+            async addUser(context, authUser) {
+                const { uid, displayName, email } = authUser
+                
+                console.log("add user: " + authUser.uid)
+
+                const userData = {
+                    uid: uid,
+                    name: displayName,
+                    email: email,
+                    role: 'user'
+                }
+
+                const res = await this.$fire.firestore.collection('users').doc(uid).set(userData)
+
+                return res
             }
         }
     })
