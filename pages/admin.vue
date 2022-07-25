@@ -18,6 +18,7 @@ Vue.use(VueYoutube)
 
 export default {
   name: 'admin',
+  middleware: ['loginAuth', 'roleAuth'],
   setup() {
   },
   data() {

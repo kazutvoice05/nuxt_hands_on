@@ -1,4 +1,5 @@
 import { firestore } from "firebase-admin";
+require('dotenv').config()
 
 export default {
   // Disable server-side rendering: https://go.nuxtjs.dev/ssr-mode
@@ -57,7 +58,13 @@ export default {
         appId: "1:600523337449:web:7e13f577c1b21127308a78"
       },
       services: {
-        auth: true,
+        auth: {
+            persistence: 'local',
+            initialize: {
+              onAuthStateChangedAction: 'onAuthStateChanged',
+            },
+            ssr: false
+          },
         firestore: true,
         storage: true,
       }
