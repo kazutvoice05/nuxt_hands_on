@@ -76,7 +76,7 @@ export default {
 }
 
 .player-button {
-  @apply w-1/2 font-serif text-white font-medium text-center;
+  @apply w-1/2 font-serif text-white font-medium text-center rounded-full;
   background: rgb(2,0,36);
   background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(121,9,24,1) 34%, rgba(0,212,255,1) 100%);
 }
