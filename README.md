@@ -1,26 +1,36 @@
 # nuxt_hands_on
 
 ## Deploy Status
-[![Netlify Status](https://api.netlify.com/api/v1/badges/fad772ee-93a8-40d6-a447-3bdf52a4e6b7/deploy-status)](https://app.netlify.com/sites/bright-nasturtium-254bac/deploys)
+### Production
+[![Netlify Status](https://api.netlify.com/api/v1/badges/fad772ee-93a8-40d6-a447-3bdf52a4e6b7/deploy-status)](https://app.netlify.com/sites/nuxt-hands-on/deploys)
+### Development
+[![Netlify Status](https://api.netlify.com/api/v1/badges/280f0dd3-22ab-449d-ab78-fec760556805/deploy-status)](https://app.netlify.com/sites/nuxt-hands-on-dev/deploys)
 
-## Build Setup
 
+## 環境変数
+### 1. Local での実行
+`.env` ファイルを作成し、firebase に関する環境変数を記述する.
+```bash:.env
+# 例
+API_KEY="AIzaSyDbdixxxxxxxxxxx"
+AUTH_DOMAIN="nuxt-hands-on.firebaseapp.com"
+PROJECT_ID="nuxt-hands-on"
+STORAGE_BUCKET="nuxt-hands-on.appspot.com"
+MESSAGING_SENDER_ID="60052xxxxxxxxxxx"
+APP_ID="1:600523337449:web:xxxxxxxxxxxx"
+```
+
+### 2. Netlify　上での実行
+Netlify の設定で、`Environment Variables` を設定
+
+## ローカルでのテストサーバ実行
 ```bash
 # install dependencies
 $ npm install
 
 # serve with hot reload at localhost:3000
 $ npm run dev
-
-# build for production and launch server
-$ npm run build
-$ npm run start
-
-# generate static project
-$ npm run generate
 ```
-
-For detailed explanation on how things work, check out the [documentation](https://nuxtjs.org).
 
 ## Special Directories
 
