@@ -27,6 +27,7 @@ export default {
   methods: {
     async getFirebase() {
       try {
+        console.log("env: " + process.env.NODE_ENV)
         const query = await this.$fire.firestore.collection('data').get()
 
         const docs = []

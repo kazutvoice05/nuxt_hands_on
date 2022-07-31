@@ -1,5 +1,6 @@
-import { firestore } from "firebase-admin";
-require('dotenv').config()
+if (process.env.NODE_ENV !== 'production') {
+  require('dotenv').config();
+}
 
 export default {
   // Disable server-side rendering: https://go.nuxtjs.dev/ssr-mode
@@ -50,12 +51,12 @@ export default {
   firebase: 
     {
       config: {
-        apiKey: "AIzaSyDbdihJ-QVJ0jEVg3nzKSvQUMfouGbeThU",
-        authDomain: "nuxt-hands-on.firebaseapp.com",
-        projectId: "nuxt-hands-on",
-        storageBucket: "nuxt-hands-on.appspot.com",
-        messagingSenderId: "600523337449",
-        appId: "1:600523337449:web:7e13f577c1b21127308a78"
+        apiKey: process.env.API_KEY,
+        authDomain: process.env.AUTH_DOMAIN,
+        projectId: process.env.PROJECT_ID,
+        storageBucket: process.env.STORAGE_BUCKET,
+        messagingSenderId: process.env.MESSAGING_SENDER_ID,
+        appId: process.env.APP_ID
       },
       services: {
         auth: {
