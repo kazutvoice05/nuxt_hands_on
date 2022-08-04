@@ -5,6 +5,7 @@
             loop
             autoplay
             muted
+            playsinline
             alt=""
             class="flex-none w-18 h-18 rounded-lg object-cover"
             width="144"
