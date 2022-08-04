@@ -2,7 +2,7 @@
 <template>
     <div>
         <AppBar />
-        <div class="flex">
+        <div class="md:flex">
             <Recipes :recipes="recipes"></Recipes>
             <Recipes :recipes="recipes"></Recipes>
         </div>
