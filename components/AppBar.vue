@@ -126,7 +126,7 @@ export default defineComponent({
                 },
                 {
                     name: "ComponentViewer",
-                    ref: "/componenttViewer",
+                    ref: "/componentViewer",
                 },
                 {
                     name: "ContentsManager",
