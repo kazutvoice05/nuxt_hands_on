@@ -9,7 +9,6 @@
         firestore Data: {{ message }}
     </div>
     <button v-on:click="getFirebase">AccessFirebase</button>
-    <!-- <button v-on:click="$store.dispatch('existsUser', { uid: $store.getters.uid})">existsUser</button> -->
     <Tutorial/>
   </div>
 </template>
