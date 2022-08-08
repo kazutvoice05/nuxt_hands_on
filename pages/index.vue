@@ -42,9 +42,6 @@ export default {
         console.log(err)
         console.log('failed to fetch data from firebase.')
       }
-    },
-    async sendMail () {
-
     }
   }
 }
