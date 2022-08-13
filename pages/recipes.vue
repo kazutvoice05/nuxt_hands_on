@@ -6,6 +6,9 @@
             <Recipes :recipes="recipes"></Recipes>
             <Recipes :recipes="recipes"></Recipes>
         </div>
+        <div class="flex justify-center">
+            <SimpleCard></SimpleCard>
+        </div>
     </div>
 </template>
 
@@ -16,7 +19,7 @@ import VueYoutube from "vue-youtube";
 Vue.use(VueYoutube);
 
 export default {
-    name: "componentViewer",
+    name: "recipes",
     setup() {},
     data() {
         return {
