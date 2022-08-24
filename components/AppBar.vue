@@ -125,8 +125,8 @@ export default defineComponent({
                     ref: "/library",
                 },
                 {
-                    name: "ComponentViewer",
-                    ref: "/componentViewer",
+                    name: "recipes",
+                    ref: "/recipes",
                 },
                 {
                     name: "ContentsManager",

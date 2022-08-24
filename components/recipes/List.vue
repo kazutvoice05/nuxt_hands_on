@@ -1,8 +1,6 @@
 <template>
-    <ul class="p-4">
-        <ul class="devide-y devide-gray-100">
-            <slot></slot>
-        </ul>
+    <ul class="devide-y devide-gray-100">
+        <slot></slot>
     </ul>
 </template>
 
