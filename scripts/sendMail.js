@@ -74,7 +74,7 @@ function getNewToken(oAuth2Client, callback) {
 async function sendMail(auth) {
     const gmail = google.gmail({ version: 'v1', auth });
     
-    const to = '10thmbs@gmail.com';
+    const to = 'kazutvoice05@gmail.com';
     const subject = 'テスト from Kazunari PC';
     const body = 'これはテストです。';
 

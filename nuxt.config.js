@@ -40,7 +40,8 @@ export default {
 
   // Modules: https://go.nuxtjs.dev/config-modules
   modules: [
-    '@nuxtjs/firebase'
+    '@nuxtjs/firebase',
+    '@nuxtjs/dotenv',
   ],
 
   // firebase configs
